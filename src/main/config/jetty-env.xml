@@ -18,9 +18,9 @@
         <Arg>
             <New class="com.mchange.v2.c3p0.ComboPooledDataSource">
                 <Set name="driverClass">com.mysql.jdbc.Driver</Set>
-                <Set name="jdbcUrl">jdbc:mysql://localhost/berzerg</Set>
-                <Set name="user">dev</Set>
-                <Set name="password">dev</Set>
+                <Set name="jdbcUrl">jdbc:mysql://localhost/fdtd</Set>
+                <Set name="user">root</Set>
+                <Set name="password">root</Set>
                 <Set name="initialPoolSize">3</Set>
                 <Set name="minPoolSize">3</Set>
                 <Set name="maxPoolSize">5</Set>
