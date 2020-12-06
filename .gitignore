@@ -1,3 +1,4 @@
 /src/main/resources/sitekey.properties
 *.iml
 .idea
+target
