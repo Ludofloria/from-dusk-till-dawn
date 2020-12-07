@@ -18,10 +18,10 @@ public class GsonUtilTest extends SpringContextTestCase {
 
     @Test
     public void itemToJson() throws Exception {
-        String xml = "<item name=\"Ç Pine Fresh È Smoke Bomb\" count=\"1\" id=\"299\" cat=\"Misc\" img=\"smoke_bomb\" broken=\"0\"/>";
+        String xml = "<item name=\"Ã‡ Pine Fresh Ãˆ Smoke Bomb\" count=\"1\" id=\"299\" cat=\"Misc\" img=\"smoke_bomb\" broken=\"0\"/>";
         UniqueItem item = UniqueItem.createFromItem((Item) XmlToObjectConverter.convertXmlToObject(xmlReader.readDocumentFromString(xml), Item.class), null);
         String json = GsonUtil.objectToJson(item);
-        assertTrue(json.contains("Ç Pine Fresh È Smoke Bomb"));
+        assertTrue(json.contains("Ã‡ Pine Fresh Ãˆ Smoke Bomb"));
     }
     
     @Test
