@@ -26,16 +26,16 @@ public class ZoneDao {
     }
 
     public Zone findZone(final Long id) {
-        List results = entityManager
-                .createQuery("from Zone z where z.id = :id")
+        List<Zone> results = entityManager
+                .createQuery("from Zone z where z.id = :id", Zone.class)
                 .setParameter("id", id)
                 .getResultList();
         return (results.size() == 0 ? null : (Zone)results.get(0));
     }
 
-    public Zone findZone(final int cityId, final int x, final int y) {
-        List results = entityManager
-                .createQuery("from Zone z where z.city.id = :city_id and z.x = :x_pos and z.y = :y_pos")
+    public Zone findZone(final Long cityId, final Integer x, final Integer y) {
+        List<Zone> results = entityManager
+                .createQuery("from Zone z where z.city.id = :city_id and z.x = :x_pos and z.y = :y_pos", Zone.class)
                 .setParameter("city_id", cityId)
                 .setParameter("x_pos", x)
                 .setParameter("y_pos",   y)
@@ -44,9 +44,9 @@ public class ZoneDao {
     }
 
     @SuppressWarnings({"unchecked"})
-    public List<Zone> findZones(final int cityId) {
+    public List<Zone> findZones(final Long cityId) {
         return (List<Zone>)entityManager
-                .createQuery("from Zone z where z.city.id = :city_id")
+                .createQuery("from Zone z where z.city.id = :city_id", Zone.class)
                 .setParameter("city_id", cityId)
                 .getResultList();
     }
@@ -60,7 +60,7 @@ public class ZoneDao {
     }
 
     @Transactional
-    public Zone findOrCreateZone(final City city, final int x, final int y) {
+    public Zone findOrCreateZone(final City city, final Integer x, final Integer y) {
         Zone currentZone = findZone(city.getId(), x, y);
         if (currentZone == null) {
             currentZone = new ZoneBuilder()

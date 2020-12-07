@@ -14,7 +14,7 @@ public class UniqueItem implements ImageBearer {
     @Expose
     @Id
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     @Expose
     @Column(name = "image")
@@ -46,7 +46,7 @@ public class UniqueItem implements ImageBearer {
     private boolean presetBp;
 
     public UniqueItem() {}
-    public UniqueItem(Integer id, String name, ItemCategory category, String image, boolean breakable,
+    public UniqueItem(Long id, String name, ItemCategory category, String image, boolean breakable,
                       boolean inSprite, boolean poisoned, boolean presetBp) {
         setId(id);
         setName(name);
@@ -60,7 +60,7 @@ public class UniqueItem implements ImageBearer {
 
     public String getImage() { return image; }
     public ItemCategory getCategory() { return category; }
-    public Integer getId() { return this.id; }
+    public Long getId() { return this.id; }
     public String getName() { return this.name; }
     public boolean isBreakable() { return breakable; }
     public boolean isInSprite() { return inSprite; }
@@ -69,7 +69,7 @@ public class UniqueItem implements ImageBearer {
 
     public void setBreakable(boolean breakable) { this.breakable = breakable; }
     public void setCategory(ItemCategory category) { this.category = category; }
-    public void setId(Integer id) { this.id = id; }
+    public void setId(Long id) { this.id = id; }
     public void setImage(String image) { this.image = image; }
     public void setName(String name) { this.name = name; }
     public void setInSprite(boolean inSprite) { this.inSprite = inSprite; }

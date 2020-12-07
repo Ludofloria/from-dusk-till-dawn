@@ -30,12 +30,13 @@ public class DistinctionDao {
     }
 
     @SuppressWarnings("unchecked")
-    public List<UserWithDistinction> findTopUsersWithDistinction(Integer uniqueDistinctionId, int amount) {
+    public List<UserWithDistinction> findTopUsersWithDistinction(Long uniqueDistinctionId, Integer amount) {
         return (List<UserWithDistinction>)entityManager
                 .createQuery(
-                        "select new nl.d2n.dao.result.UserWithDistinction(u.gameId, u.name, d.amount) "+
-                        "from User u, Distinction d where u=d.user and d.uniqueDistinctionId=:uniqueDistinctionId "+
-                        "order by d.amount desc"
+                        "SELECT NEW nl.d2n.dao.result.UserWithDistinction(u.gameId, u.name, d.amount) "+
+                        "FROM User u, Distinction d WHERE u=d.user AND d.uniqueDistinctionId=:uniqueDistinctionId "+
+                        "ORDER BY d.amount desc",
+                        UserWithDistinction.class
                 )
                 .setMaxResults(amount)
                 .setParameter("uniqueDistinctionId", uniqueDistinctionId)
@@ -44,14 +45,14 @@ public class DistinctionDao {
 
     @SuppressWarnings({"unchecked"})
     @Cacheable(value = "distinctions", key="#cityId")
-    public Map<Integer, UserWithProfile> findUsersWithDistinctions(Integer cityId, List<Integer> userIds) {
-        Map<Integer, UserWithProfile> profiles = new TreeMap<Integer, UserWithProfile>();
+    public Map<Long, UserWithProfile> findUsersWithDistinctions(Long cityId, List<Long> userIds) {
+        TreeMap<Long, UserWithProfile> profiles = new TreeMap<Long, UserWithProfile>();
         if (userIds == null || userIds.size() == 0) {
             return profiles;
         }
 
         List results = entityManager
-                .createQuery("select u, d from User u, Distinction d where u=d.user and u.id in (:user_ids)")
+                .createQuery("SELECT u, d from User u, Distinction d WHERE u=d.user AND u.id in (:user_ids)")
                 .setParameter("user_ids", userIds)
                 .getResultList();
 
@@ -75,7 +76,7 @@ public class DistinctionDao {
     @SuppressWarnings({"unchecked"})
     public List<Distinction> findDistinctionsOfUser(String userName) {
         return (List<Distinction>)entityManager
-                .createQuery("from Distinction d where d.user.name = :username")
+                .createQuery("FROM Distinction d WHERE d.user.name = :username", Distinction.class)
                 .setParameter("username", userName)
                 .getResultList();
     }
@@ -83,7 +84,7 @@ public class DistinctionDao {
     @Transactional
     public void deleteDistinctions() {
         entityManager
-                .createQuery("delete from Distinction")
+                .createQuery("DELETE FROM Distinction")
                 .executeUpdate();
     }
 }

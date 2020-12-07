@@ -16,7 +16,7 @@ public class OutsideBuilding {
 
     @Expose
     @XmlAttribute
-    private int type;
+    private Long type;
 
     @Expose
     @XmlAttribute
@@ -31,7 +31,7 @@ public class OutsideBuilding {
     private String url;
 
     public OutsideBuilding() {}
-    public OutsideBuilding(int type, String name, String flavor, String url) {
+    public OutsideBuilding(Long type, String name, String flavor, String url) {
         this.type = type;
         this.name = name;
         this.flavor = flavor;
@@ -51,7 +51,7 @@ public class OutsideBuilding {
     public void setUrl(String url) { this.url = url; }
 
     public String getName() { return this.name; }
-    public int getType() { return this.type; }
+    public Long getType() { return this.type; }
     public int getDig() { return this.dig; }
     public String getFlavor() { return this.flavor; }
     public String getUrl() { return this.url; }

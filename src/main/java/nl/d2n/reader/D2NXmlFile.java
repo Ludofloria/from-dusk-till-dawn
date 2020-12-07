@@ -12,12 +12,12 @@ public class D2NXmlFile {
     public D2NXmlFile(String directory) { setDirectory(directory);}
 
     @SuppressWarnings({"NullableProblems"})
-    public void writeFile(final String xmlText, final Integer id) throws IOException, FileNotFoundException {
+    public void writeFile(final String xmlText, final Long id) throws IOException, FileNotFoundException {
         writeFile(xmlText, null, id);
     }
 
     @SuppressWarnings({"ResultOfMethodCallIgnored"})
-    public void writeFile(final String xmlText, final String subdir, final Integer id) throws IOException, FileNotFoundException {
+    public void writeFile(final String xmlText, final String subdir, final Long id) throws IOException, FileNotFoundException {
         File file = new File(getFilePath(directory, subdir, id));
         file.createNewFile();
         Writer xmlOut = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
@@ -26,10 +26,10 @@ public class D2NXmlFile {
     }
 
     @SuppressWarnings({"NullableProblems"})
-    public String readFile(final Integer id) throws IOException, FileNotFoundException {
+    public String readFile(final Long id) throws IOException, FileNotFoundException {
         return readFile(null, id);
     }
-    public String readFile(final String subdir, final Integer id) throws IOException, FileNotFoundException {
+    public String readFile(final String subdir, final Long id) throws IOException, FileNotFoundException {
         File file = new File(getFilePath(directory, subdir, id));
         BufferedReader xmlIn = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
         StringBuilder xmlText = new StringBuilder();
@@ -47,10 +47,10 @@ public class D2NXmlFile {
     }
 
     @SuppressWarnings({"NullableProblems"})
-    public static String getFilePath(String directory, int id) {
+    public static String getFilePath(String directory, Long id) {
         return getFilePath(directory, null, id);
     }
-    public static String getFilePath(String directory, String subdir, int id) {
+    public static String getFilePath(String directory, String subdir, Long id) {
         return directory+(subdir==null?"":subdir+"/")+id+".xml";
     }
 }

@@ -4,15 +4,15 @@ import java.util.Date;
 
 public class LastUpdateByUser {
 
-    private Integer id;
+    private Long id;
 
     private Date updated;
 
-    public LastUpdateByUser(Integer id, Date updated) {
+    public LastUpdateByUser(Long id, Date updated) {
         this.id = id;
         this.updated = updated;
     }
-    public Integer getId() {
+    public Long getId() {
         return this.id;
     }
     public Date getUpdated() {

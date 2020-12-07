@@ -19,7 +19,7 @@ public class PlayedMap {
     private Integer day;
 
     @XmlAttribute
-    private Integer id;
+    private Long id;
 
     @XmlAttribute(name = "v1")
     private String version;
@@ -31,7 +31,7 @@ public class PlayedMap {
     public Integer getSeason() { return season; }
     public Integer getScore() { return score; }
     public Integer getDay() { return day; }
-    public Integer getId() { return id; }
+    public Long getId() { return id; }
     public String getVersion() { return version; }
     public String getMessage() { return message; }
 }

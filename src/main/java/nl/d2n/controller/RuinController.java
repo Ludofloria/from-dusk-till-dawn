@@ -27,7 +27,7 @@ public class RuinController extends AbstractController {
     @RequestMapping(method = RequestMethod.GET)
     public void getRuin(HttpServletRequest request, HttpServletResponse response,
                             @RequestParam(value = "key", required = true) UserKey key,
-                            @RequestParam(value = "city", required = true) Integer city,
+                            @RequestParam(value = "city", required = true) Long city,
                             @RequestParam(value = "x", required = true) Integer x,
                             @RequestParam(value = "y", required = true) Integer y
             ) throws IOException, ApplicationException {
@@ -38,7 +38,7 @@ public class RuinController extends AbstractController {
     @RequestMapping(method = RequestMethod.POST)
     public void saveRoom(HttpServletRequest request, HttpServletResponse response,
                          @RequestParam(value = "key", required = true) UserKey key,
-                         @RequestParam(value = "city", required = true) Integer city,
+                         @RequestParam(value = "city", required = true) Long city,
                          @RequestParam(value = "x_zone", required = true) Integer xZone,
                          @RequestParam(value = "y_zone", required = true) Integer yZone,
                          @RequestParam(value = "x_room", required = true) Integer xRoom,

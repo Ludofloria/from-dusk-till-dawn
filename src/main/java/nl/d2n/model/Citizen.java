@@ -48,7 +48,7 @@ public class Citizen {
 
     @Expose
     @XmlAttribute
-    private Integer id;
+    private Long id;
 
     // http://data.die2nite.com/gfx/icons/small_ban.gif
     @XmlAttribute(name = "ban")
@@ -93,7 +93,7 @@ public class Citizen {
     public String getAvatar() {return this.avatar; }
     public Integer getMatrixX() { return this.matrixX; }
     public Integer getMatrixY() { return this.matrixY; }
-    public Integer getId() { return this.id; }
+    public Long getId() { return this.id; }
     public boolean isShunned() { return this.shunned; }
     public Job getJob() { return this.job; }
     public boolean isOutside() { return this.outside; }
@@ -108,7 +108,7 @@ public class Citizen {
     public String getSpecialImage() { return specialImage; }
     public String getSpecialDescription() { return specialDescription; }
 
-    public void setId(Integer id) { this.id = id; }
+    public void setId(Long id) { this.id = id; }
     public void setName(String name) { this.name = name; }
     public void setMatrixX(int x) { this.matrixX = x; }
     public void setMatrixY(int y) { this.matrixY = y; }

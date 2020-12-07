@@ -69,8 +69,8 @@ public class UniqueDistinctionManager extends UniqueManagerWithImages<String, Un
         object.setRare(uniqueObject.isRare());
     }
 
-    protected Map<Integer, UniqueDistinction> getMapWithIntegerKeys() {
-        Map<Integer, UniqueDistinction> uniqueDistinctions = new TreeMap<Integer, UniqueDistinction>();
+    protected Map<Long, UniqueDistinction> getMapWithIntegerKeys() {
+        TreeMap<Long, UniqueDistinction> uniqueDistinctions = new TreeMap<Long, UniqueDistinction>();
         for (UniqueDistinction uniqueDistinction : uniqueObjects.values()) {
             uniqueDistinctions.put(uniqueDistinction.getId(), uniqueDistinction);
         }
@@ -79,7 +79,7 @@ public class UniqueDistinctionManager extends UniqueManagerWithImages<String, Un
 
     @Override
     public List<Distinction> appendMissingFields(List<Distinction> distinctions) {
-        Map<Integer, UniqueDistinction> uniqueDistinctions = getMapWithIntegerKeys();
+        Map<Long, UniqueDistinction> uniqueDistinctions = getMapWithIntegerKeys();
         for (Distinction distinction : distinctions) {
             UniqueDistinction uniqueDistinction = uniqueDistinctions.get(distinction.getUniqueDistinctionId());
             appendMissingFields(distinction, uniqueDistinction);

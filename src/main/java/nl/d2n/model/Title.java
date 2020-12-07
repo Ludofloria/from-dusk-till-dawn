@@ -12,9 +12,9 @@ public class Title {
     @XmlAttribute(name = "name")
     private String name;
 
-    private Integer uniqueDistinctionId;
+    private Long uniqueDistinctionId;
 
     public String getName() { return this.name; }
-    public Integer getUniqueDistinctionId() { return uniqueDistinctionId; }
-    public void setUniqueDistinctionId(Integer uniqueDistinctionId) { this.uniqueDistinctionId = uniqueDistinctionId; }
+    public Long getUniqueDistinctionId() { return uniqueDistinctionId; }
+    public void setUniqueDistinctionId(Long uniqueDistinctionId) { this.uniqueDistinctionId = uniqueDistinctionId; }
 }

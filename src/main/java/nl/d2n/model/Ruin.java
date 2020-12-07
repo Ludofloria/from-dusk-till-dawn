@@ -19,13 +19,13 @@ public class Ruin {
     private Integer y;
 
     @Expose
-    private Integer cityId;
+    private Long cityId;
 
     private List<Room> roomsToSave = new ArrayList<Room>();
 
     public Ruin() {}
 
-    public Ruin(List<Room> rooms, Integer cityId, Integer x, Integer y) {
+    public Ruin(List<Room> rooms, Long cityId, Integer x, Integer y) {
         for (Room room : rooms) {
             add(room);
         }

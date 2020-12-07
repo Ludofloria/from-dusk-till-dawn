@@ -36,7 +36,7 @@ public class RoomDao {
     }
 
     @Transactional
-    public void deleteRoom(Zone zone, int x, int y) {
+    public void deleteRoom(Zone zone, Integer x, Integer y) {
         entityManager
                 .createQuery("delete from Room where zone.id = :zone_id and x = :x and y = :y")
                 .setParameter("zone_id", zone.getId())
@@ -45,9 +45,9 @@ public class RoomDao {
                 .executeUpdate();
     }
 
-    public Room findRoom(Zone zone, int x, int y) {
-        List results = entityManager
-                .createQuery("from Room where zone.id = :zone_id and x = :x and y = :y")
+    public Room findRoom(Zone zone, Integer x, Integer y) {
+        List<Room> results = entityManager
+                .createQuery("from Room where zone.id = :zone_id and x = :x and y = :y", Room.class)
                 .setParameter("zone_id", zone.getId())
                 .setParameter("x", x)
                 .setParameter("y", y)
@@ -58,7 +58,7 @@ public class RoomDao {
     @SuppressWarnings({"unchecked"})
     public Ruin getRuin(Zone zone) {
         List<Room> rooms = (List<Room>)entityManager
-                .createQuery("from Room where zone.id = :zone_id")
+                .createQuery("from Room where zone.id = :zone_id", Room.class)
                 .setParameter("zone_id", zone.getId())
                 .getResultList();
         return new Ruin(rooms, zone.getCity().getId(), zone.getX(), zone.getY());

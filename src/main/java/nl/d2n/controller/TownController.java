@@ -28,8 +28,8 @@ public class TownController extends AbstractController {
     @RequestMapping(method = RequestMethod.POST, value= "lock_building")
     public void lockBuilding(HttpServletResponse response,
                             @RequestParam(value = "key", required = true) UserKey key,
-                            @RequestParam(value = "city", required = false) Integer city,
-                            @RequestParam(value = "building", required = false) Integer building,
+                            @RequestParam(value = "city", required = false) Long city,
+                            @RequestParam(value = "building", required = false) Long building,
                             @RequestParam(value = "day", required = false) Integer day
             ) throws IOException, ApplicationException {
         applicationContext.getBean(BuildingActionLock.class).execute(key, city, building, day);
@@ -38,8 +38,8 @@ public class TownController extends AbstractController {
     @RequestMapping(method = RequestMethod.POST, value= "unlock_building")
     public void unlockBuilding(HttpServletResponse response,
                              @RequestParam(value = "key", required = true) UserKey key,
-                             @RequestParam(value = "city", required = false) Integer city,
-                             @RequestParam(value = "building", required = false) Integer building,
+                             @RequestParam(value = "city", required = false) Long city,
+                             @RequestParam(value = "building", required = false) Long building,
                              @RequestParam(value = "day", required = false) Integer day
             ) throws IOException, ApplicationException {
         applicationContext.getBean(BuildingActionUnlock.class).execute(key, city, building, day);

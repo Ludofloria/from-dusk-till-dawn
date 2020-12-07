@@ -27,7 +27,7 @@ public class RuinService {
     @Autowired
     private UserSecurityCheck userSecurityCheck;
 
-    public Ruin getRuin(final UserKey userKey, Integer cityId, Integer x, Integer y) throws ApplicationException {
+    public Ruin getRuin(final UserKey userKey, Long cityId, Integer x, Integer y) throws ApplicationException {
 
         Zone zone = checkUserAndGetZone(userKey, cityId, x, y, CREATE_ZONE);
 
@@ -43,7 +43,7 @@ public class RuinService {
         return ruin;
     }
 
-    public void addRoom(final UserKey userKey, Integer cityId, Integer xZone, Integer yZone,
+    public void addRoom(final UserKey userKey, Long cityId, Integer xZone, Integer yZone,
                         Integer xRoom, Integer yRoom) throws ApplicationException {
 
         Zone zone = checkUserAndGetZone(userKey, cityId, xZone, yZone, DO_NOT_CREATE_ZONE);
@@ -59,7 +59,7 @@ public class RuinService {
         roomDao.saveRooms(ruin);
     }
 
-    public void deleteRoom( final UserKey userKey, Integer cityId, Integer xZone, Integer yZone,
+    public void deleteRoom( final UserKey userKey, Long cityId, Integer xZone, Integer yZone,
                             Integer xRoom, Integer yRoom) throws ApplicationException {
 
         Zone zone = checkUserAndGetZone(userKey, cityId, xZone, yZone, DO_NOT_CREATE_ZONE);
@@ -72,7 +72,7 @@ public class RuinService {
         roomDao.deleteRoom(zone, xRoom, yRoom);
     }
 
-    public void addCorridor(final UserKey userKey, Integer cityId, Integer xZone, Integer yZone,
+    public void addCorridor(final UserKey userKey, Long cityId, Integer xZone, Integer yZone,
                             Integer xRoom, Integer yRoom, RuinDirection direction) throws ApplicationException {
 
         Zone zone = checkUserAndGetZone(userKey, cityId, xZone, yZone, DO_NOT_CREATE_ZONE);
@@ -82,7 +82,7 @@ public class RuinService {
         roomDao.saveRooms(ruin);
     }
 
-    public void deleteCorridor(final UserKey userKey, Integer cityId, Integer xZone, Integer yZone,
+    public void deleteCorridor(final UserKey userKey, Long cityId, Integer xZone, Integer yZone,
                                Integer xRoom, Integer yRoom, RuinDirection direction) throws ApplicationException {
         
         Zone zone = checkUserAndGetZone(userKey, cityId, xZone, yZone, DO_NOT_CREATE_ZONE);
@@ -92,7 +92,7 @@ public class RuinService {
         roomDao.saveRooms(ruin);
     }
 
-    public void setDoor(final UserKey userKey, Integer cityId, Integer xZone, Integer yZone,
+    public void setDoor(final UserKey userKey, Long cityId, Integer xZone, Integer yZone,
                         Integer xRoom, Integer yRoom, Door door) throws ApplicationException {
 
         Zone zone = checkUserAndGetZone(userKey, cityId, xZone, yZone, DO_NOT_CREATE_ZONE);
@@ -104,7 +104,7 @@ public class RuinService {
         roomDao.saveRoom(room);
     }
 
-    public void setZombies(final UserKey userKey, Integer cityId, Integer xZone, Integer yZone,
+    public void setZombies(final UserKey userKey, Long cityId, Integer xZone, Integer yZone,
                            Integer xRoom, Integer yRoom, Integer zombies) throws ApplicationException {
 
         Zone zone = checkUserAndGetZone(userKey, cityId, xZone, yZone, DO_NOT_CREATE_ZONE);
@@ -113,7 +113,7 @@ public class RuinService {
         roomDao.saveRoom(room);
     }
 
-    public void setKey(final UserKey userKey, Integer cityId, Integer xZone, Integer yZone,
+    public void setKey(final UserKey userKey, Long cityId, Integer xZone, Integer yZone,
                        Integer xRoom, Integer yRoom, Key key) throws ApplicationException {
 
         Zone zone = checkUserAndGetZone(userKey, cityId, xZone, yZone, DO_NOT_CREATE_ZONE);
@@ -137,7 +137,7 @@ public class RuinService {
         return room;
     }
     
-    protected Zone checkUserAndGetZone(final UserKey userKey, Integer cityId, Integer xZone,
+    protected Zone checkUserAndGetZone(final UserKey userKey, Long cityId, Integer xZone,
                                        Integer yZone, boolean createZone) throws ApplicationException {
         // Check whether the user & citizen both are bona fide
         userSecurityCheck.checkUser(userKey, DO_NOT_ALLOW_FIRST_TIME, CHECK_FOR_SECURE_SETTING, CHECK_FOR_SHUNNED_SETTING);
@@ -148,7 +148,7 @@ public class RuinService {
                 findZone(cityId, xZone, yZone);
     }
 
-    protected Zone findOrCreateZone(Integer cityId, Integer x, Integer y) throws ApplicationException {
+    protected Zone findOrCreateZone(Long cityId, Integer x, Integer y) throws ApplicationException {
         City city = cityDao.findCity(cityId);
         if (city == null) {
             throw new ApplicationException(D2NErrorCode.CITY_DOES_NOT_EXIST);
@@ -161,7 +161,7 @@ public class RuinService {
         return zone;
     }
 
-    protected Zone findZone(Integer cityId, Integer x, Integer y) throws ApplicationException {
+    protected Zone findZone(Long cityId, Integer x, Integer y) throws ApplicationException {
         Zone zone = zoneDao.findZone(cityId, x, y);
         if (zone == null) {
             throw new ApplicationException(D2NErrorCode.ZONE_DOES_NOT_EXIST);

@@ -27,7 +27,7 @@ public class ItemDao {
     @SuppressWarnings({"unchecked"})
     public List<Item> findAllItems() {
         return (List<Item>)entityManager
-                .createQuery("from Item i")
+                .createQuery("from Item i", Item.class)
                 .getResultList();
     }
 

@@ -64,7 +64,7 @@ public class MapService {
     @Autowired
     private UserService userService;
 
-    public List<InsideBuilding> getBuildingsWithStatus(List<InsideBuilding> constructedBuildings, Integer cityId) {
+    public List<InsideBuilding> getBuildingsWithStatus(List<InsideBuilding> constructedBuildings, Long cityId) {
         // Draw the initial list from the unique buildings
         List<InsideBuilding> buildings = UniqueInsideBuilding.createBuildingHierarchy(uniqueInsideBuildingManager.getMap().values());
         // Add all the buildings which are automatically included as always available
@@ -93,7 +93,7 @@ public class MapService {
         return zone;
     }
 
-    public Map<Integer, Map<Integer, Zone>> getZones(int cityId) throws ApplicationException {
+    public Map<Integer, Map<Integer, Zone>> getZones(long cityId) throws ApplicationException {
         InfoWrapper wrapper = getInfoFromCache(cityId);
 
         MapMatrix matrix = wrapper.getInfo().getMatrix();
@@ -104,7 +104,7 @@ public class MapService {
         return matrix.toJsonMap();
     }
 
-    public Zone getZone(int cityId, int x, int y) throws ApplicationException {
+    public Zone getZone(Long cityId, int x, int y) throws ApplicationException {
         InfoWrapper wrapper = getInfoFromCache(cityId);
 
         // Load the specific zone from the database and merge it into the info files
@@ -120,7 +120,7 @@ public class MapService {
         return matrix.getMatrix()[matrix.getMatrixXPos(x)][matrix.getMatrixYPos(y)];
     }
 
-    protected InfoWrapper getInfoFromCache(int cityId) throws ApplicationException {
+    protected InfoWrapper getInfoFromCache(Long cityId) throws ApplicationException {
         InfoWrapper wrapper = d2nXmlReader.readXmlFromCache(cityId);
 
         if (wrapper.requiresEnhancing()) {

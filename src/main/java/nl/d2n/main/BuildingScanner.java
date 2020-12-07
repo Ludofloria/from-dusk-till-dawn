@@ -25,7 +25,7 @@ public class BuildingScanner {
             System.out.println(name);
         }
 
-        Map<Integer, Set<InsideBuilding>> buildings = new TreeMap<Integer, Set<InsideBuilding>>();
+        Map<Long, Set<InsideBuilding>> buildings = new TreeMap<Long, Set<InsideBuilding>>();
 
         for (String name : names) {
             System.out.println("Processing "+name+"...");
@@ -40,7 +40,7 @@ public class BuildingScanner {
             printBuilding(0, building, buildings);
         }
     }
-    static public void printBuilding(int layer, InsideBuilding building, Map<Integer, Set<InsideBuilding>> buildings) {
+    static public void printBuilding(int layer, InsideBuilding building, Map<Long, Set<InsideBuilding>> buildings) {
         printText(layer, building.getName());
         printText(layer, building.getFlavor());
         System.out.println();
@@ -59,7 +59,7 @@ public class BuildingScanner {
         System.out.println(text);
     }
 
-    static public void readFromFile(Map<Integer, Set<InsideBuilding>> orderedBuildings, String fileName) throws Exception {
+    static public void readFromFile(Map<Long, Set<InsideBuilding>> orderedBuildings, String fileName) throws Exception {
         String fileToRead = S3_DIR + "/" + fileName;
         File file = new File(fileToRead);
         String xml = FileToStringConverter.getContent(file);

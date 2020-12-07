@@ -29,7 +29,7 @@ public class D2NXmlReader extends AbstractXmlReader<InfoWrapper> {
         return readXmlFromCache(userDao.getCityId(userKey));
     }
 
-    public InfoWrapper readXmlFromCache(final Integer cityId) throws ApplicationException {
+    public InfoWrapper readXmlFromCache(final Long cityId) throws ApplicationException {
         if (cityId == null) {
             throw new ApplicationException(D2NErrorCode.NOT_IN_GAME);
         }
@@ -54,7 +54,7 @@ public class D2NXmlReader extends AbstractXmlReader<InfoWrapper> {
     
     @Override
     protected void writeLatestXml(InfoWrapper infoWrapper, String xmlText) throws ApplicationException {
-        Integer cityId = infoWrapper.getInfo().getGameHeader().getGame().getId();
+        Long cityId = infoWrapper.getInfo().getGameHeader().getGame().getId();
         cache.writeToCache(cityId, infoWrapper.getInfo());
         cache.writeToFile(cityId, xmlText);
     }

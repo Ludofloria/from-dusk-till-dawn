@@ -20,8 +20,8 @@ public class UniqueDistinctionDao {
     }
 
     public UniqueDistinction find(final String name) {
-        List results = entityManager
-                .createQuery("from UniqueDistinction d where d.name = :name")
+        List<UniqueDistinction> results = entityManager
+                .createQuery("from UniqueDistinction d where d.name = :name", UniqueDistinction.class)
                 .setParameter("name", name)
                 .getResultList();
         return (results.size() == 0 ? null : (UniqueDistinction)results.get(0));

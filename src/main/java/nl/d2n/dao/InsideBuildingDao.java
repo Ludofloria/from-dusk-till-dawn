@@ -25,18 +25,18 @@ public class InsideBuildingDao {
     }
 
     @Transactional
-    public void delete(final int cityId, final int buildingId) {
+    public void delete(final Long cityId, final Long buildingId) {
         entityManager
-                .createQuery("delete from InsideBuilding where city.id = :city_id and buildingId = :building_id")
+                .createQuery("DELETE FROM InsideBuilding WHERE city.id = :city_id and buildingId = :building_id")
                 .setParameter("city_id", cityId)
                 .setParameter("building_id", buildingId)
                 .executeUpdate();
     }
 
     @SuppressWarnings({"unchecked"})
-    public List<InsideBuilding> findInsideBuildings(final int cityId) {
+    public List<InsideBuilding> findInsideBuildings(final Long cityId) {
         return (List<InsideBuilding>)entityManager
-                .createQuery("from InsideBuilding ib where ib.city.id = :city_id")
+                .createQuery("FROM InsideBuilding ib WHERE ib.city.id = :city_id")
                 .setParameter("city_id", cityId)
                 .getResultList();
     }

@@ -31,7 +31,7 @@ public class ZoneController extends AbstractController {
     @RequestMapping(method = RequestMethod.GET)
     public void getZoneInfo(HttpServletRequest request, HttpServletResponse response,
                             @RequestParam(value = "sk", required = true) String siteKey,
-                            @RequestParam(value = "city", required = true) Integer city,
+                            @RequestParam(value = "city", required = true) Long city,
                             @RequestParam(value = "x", required = false) Integer x,
                             @RequestParam(value = "y", required = false) Integer y
             ) throws IOException, ApplicationException {

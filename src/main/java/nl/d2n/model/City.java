@@ -21,7 +21,7 @@ public class City {
 
     @Id
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     @Expose
     @Column(name = "name")
@@ -112,7 +112,7 @@ public class City {
     private boolean upgradedMapAvailable = false;
 
     public String getName() { return this.name; }
-    public Integer getId() { return this.id; }
+    public Long getId() { return this.id; }
     public Defense getDefense() { return this.defense; }
     public List<InsideBuilding> getBuildings() { return this.buildings; }
     public boolean isDoorOpen() { return this.doorOpen; }
@@ -131,7 +131,7 @@ public class City {
     public Integer getTop() { return this.top;}
     public Integer getBottom() { return this.bottom; }
 
-    public void setId(Integer id) { this.id = id; }
+    public void setId(Long id) { this.id = id; }
     public void setName(String name) { this.name = name; }
     public void setX(int x) { this.x = x; }
     public void setY(int y) { this.y = y; }

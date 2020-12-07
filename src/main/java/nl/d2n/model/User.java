@@ -13,7 +13,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
-    private Integer id;
+    private Long id;
 
     @Embedded()
     private UserKey key;
@@ -53,16 +53,16 @@ public class User {
     private Integer soulPoints = 0;
     
     @Column(name = "game_id")
-    private Integer gameId;
+    private Long gameId;
 
-    public Integer getId() { return id; }
+    public Long getId() { return id; }
     public UserKey getKey() { return key; }
     public String getName() { return name; }
     public boolean isBanned() { return banned; }
     public boolean isSecure() { return secure; }
     public boolean isShunned() { return shunned; }
     public Integer getSoulPoints() { return soulPoints; }
-    public Integer getGameId() { return gameId; }
+    public Long getGameId() { return gameId; }
     public String getImage() { return image; }
     public String getDescription() { return description; }
 
@@ -73,6 +73,6 @@ public class User {
     public void setShunned(boolean shunned) { this.shunned = shunned; }
     public void setCity(City city) { this.city = city; }
     public void setSoulPoints(Integer soulPoints) { this.soulPoints = soulPoints; }
-    public void setGameId(Integer gameId) { this.gameId = gameId; }
-    protected void setId(Integer id) { this.id = id; }
+    public void setGameId(Long gameId) { this.gameId = gameId; }
+    protected void setId(Long id) { this.id = id; }
 }

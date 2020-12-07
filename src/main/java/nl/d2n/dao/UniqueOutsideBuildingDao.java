@@ -26,7 +26,7 @@ public class UniqueOutsideBuildingDao {
     @SuppressWarnings({"unchecked"})
     public List<UniqueOutsideBuilding> findUniqueOutsideBuildings() {
         return (List<UniqueOutsideBuilding>)entityManager
-                .createQuery("from UniqueOutsideBuilding order by id")
+                .createQuery("from UniqueOutsideBuilding order by id", UniqueOutsideBuilding.class)
                 .getResultList();
     }
 

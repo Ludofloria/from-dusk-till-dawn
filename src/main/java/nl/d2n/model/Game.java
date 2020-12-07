@@ -19,11 +19,11 @@ public class Game {
     private String date;
 
     @XmlAttribute
-    private int id;
+    private long id;
 
     public int getDay() { return this.day; }
     public boolean isQuarantined() { return this.quarantined; }
     public String getDate() { return this.date; }
-    public int getId() { return this.id; }
+    public long getId() { return this.id; }
 
 }

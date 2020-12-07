@@ -12,7 +12,7 @@ public class UniqueOutsideBuilding {
     @Expose
     @Id
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     @Expose
     @Column
@@ -27,19 +27,19 @@ public class UniqueOutsideBuilding {
     private String url;
 
     public UniqueOutsideBuilding() {}
-    public UniqueOutsideBuilding(Integer id, String name, String flavor, String url) {
+    public UniqueOutsideBuilding(Long id, String name, String flavor, String url) {
         setId(id);
         setName(name);
         setFlavor(flavor);
         setUrl(url);
     }
 
-    public Integer getId() { return this.id; }
+    public Long getId() { return this.id; }
     public String getName() { return this.name; }
     public String getFlavor() { return this.flavor; }
     public String getUrl() { return this.url; }
 
-    public void setId(Integer id) { this.id = id; }
+    public void setId(Long id) { this.id = id; }
     public void setName(String name) { this.name = name; }
     public void setFlavor(String flavor) { this.flavor = flavor; }
     public void setUrl(String url) { this.url = url; }

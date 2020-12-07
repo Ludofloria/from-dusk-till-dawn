@@ -27,11 +27,11 @@ public class D2NXmlCache {
         return cacheManager.getCache("info");
     }
 
-    public void writeToCache(Integer cityId, Info genericInfo) throws ApplicationException {
+    public void writeToCache(Long cityId, Info genericInfo) throws ApplicationException {
         getInfoCache().put(cityId, genericInfo);
     }
 
-    public void writeToFile(Integer cityId, String xmlText) throws ApplicationException {
+    public void writeToFile(Long cityId, String xmlText) throws ApplicationException {
         try {
             fileAccessor.writeFile(xmlText, cityId);
         } catch (Exception err) {
@@ -40,12 +40,12 @@ public class D2NXmlCache {
         }
     }
 
-    public Info readFromCache(Integer cityId) throws ApplicationException {
+    public Info readFromCache(Long cityId) throws ApplicationException {
         Cache.ValueWrapper wrapper = getInfoCache().get(cityId);
         return wrapper == null ? null : (Info)wrapper.get();
     }
 
-    public String readFromFile(Integer cityId) throws ApplicationException {
+    public String readFromFile(Long cityId) throws ApplicationException {
         try {
             return fileAccessor.readFile(cityId);
         } catch (FileNotFoundException err) {

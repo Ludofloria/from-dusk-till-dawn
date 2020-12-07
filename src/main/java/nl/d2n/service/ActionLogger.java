@@ -29,11 +29,11 @@ public class ActionLogger {
     private UserActionDao userActionDao;
 
     @SuppressWarnings({"NullableProblems"})
-    public UserAction logAction(int cityId, UserKey userKey, int day, UpdateAction action, GameClock gameClock) throws ApplicationException {
+    public UserAction logAction(Long cityId, UserKey userKey, Integer day, UpdateAction action, GameClock gameClock) throws ApplicationException {
         return logAction(null, cityId, userKey, day, action, gameClock);
     }
 
-    public UserAction logAction(Zone zone, UserKey userKey, int day, UpdateAction action, GameClock gameClock) throws ApplicationException {
+    public UserAction logAction(Zone zone, UserKey userKey, Integer day, UpdateAction action, GameClock gameClock) throws ApplicationException {
         assert zone != null;
         if (zone.getId() == null) {
             zone = zoneDao.findZone(zone.getCity().getId(), zone.getX(), zone.getY());
@@ -41,7 +41,7 @@ public class ActionLogger {
         return logAction(zone, zone.getCity().getId(), userKey, day, action, gameClock);
     }
 
-    protected UserAction logAction(Zone zone, int cityId, UserKey userKey, int day, UpdateAction action, GameClock gameClock) throws ApplicationException {
+    protected UserAction logAction(Zone zone, Long cityId, UserKey userKey, Integer day, UpdateAction action, GameClock gameClock) throws ApplicationException {
         return logAction(
                 zone,
                 cityDao.findCity(cityId),
@@ -51,7 +51,7 @@ public class ActionLogger {
                 action);
     }
 
-    private UserAction logAction(Zone zone, City city, User user, GameClock gameClock, int day, UpdateAction action) {
+    private UserAction logAction(Zone zone, City city, User user, GameClock gameClock, Integer day, UpdateAction action) {
         UserAction userAction = new UserAction();
         userAction.setCity(city);
         userAction.setZone(zone);

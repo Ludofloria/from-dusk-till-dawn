@@ -6,9 +6,9 @@ import java.util.TreeMap;
 
 public class UserStore<C> {
 
-    private Map<Integer, C> storedById = new TreeMap<Integer, C>();
+    private Map<Long, C> storedById = new TreeMap<Long, C>();
 
-    private Map<Integer, Integer> twinoidIdToId = new TreeMap<Integer, Integer>();
+    private Map<Long, Long> twinoidIdToId = new TreeMap<Long, Long>();
     
     public UserStore(List<User> users) {
         for (User user : users) {
@@ -18,16 +18,16 @@ public class UserStore<C> {
         }
     }
 
-    public C getById(Integer id) {
+    public C getById(Long id) {
         return storedById.get(id);
     }
 
-    public C getByTwinoidId(Integer twinoidId) {
-        Integer id = twinoidIdToId.get(twinoidId);
+    public C getByTwinoidId(Long twinoidId) {
+        Long id = twinoidIdToId.get(twinoidId);
         return id == null ? null : storedById.get(id);
     }
 
-    public void putById(Integer id, C objectToStore) {
+    public void putById(Long id, C objectToStore) {
         storedById.put(id, objectToStore);
     }
 }

@@ -26,7 +26,7 @@ public class UniqueTitleDao {
     @SuppressWarnings({"unchecked"})
     public List<UniqueTitle> findUniqueTitles() {
         return (List<UniqueTitle>)entityManager
-                .createQuery("from UniqueTitle")
+                .createQuery("from UniqueTitle", UniqueTitle.class)
                 .getResultList();
     }
 

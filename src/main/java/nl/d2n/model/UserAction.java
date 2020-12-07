@@ -13,7 +13,7 @@ public class UserAction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "action")
     @Enumerated(EnumType.STRING)
@@ -51,13 +51,13 @@ public class UserAction {
         setAction(action);
     }
 
-    public Integer getId() {return id; }
+    public Long getId() {return id; }
     public UpdateAction getAction() {return action; }
     public Date getUpdated() {return updated; }
     public int getDay() { return day; }
     public User getUser() { return user; }
 
-    public void setId(Integer id) {this.id = id; }
+    public void setId(Long id) {this.id = id; }
     public void setAction(UpdateAction action) {this.action = action; }
     public void setDay(int day) { this.day = day; }
     public void setUpdated(Date updated) {this.updated = updated; }

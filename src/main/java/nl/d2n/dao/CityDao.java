@@ -32,16 +32,16 @@ public class CityDao {
 //    protected void evictCity(Integer cityId) {}
 
 //    @Cacheable(value = "cities", key="#id")
-    public City findCity(final Integer id) {
-        List results = entityManager
-                .createQuery("from City c where c.id = :id")
+    public City findCity(final Long id) {
+        List<City> results = entityManager
+                .createQuery("FROM City c WHERE c.id = :id", City.class)
                 .setParameter("id", id)
                 .getResultList();
         return (results.size() == 0 ? null : (City)results.get(0));
     }
 
     @Transactional
-    public void deleteCity(final Integer id) {
+    public void deleteCity(final Long id) {
         deleteCity(findCity(id));
     }
 
@@ -53,16 +53,16 @@ public class CityDao {
     @SuppressWarnings({"unchecked"})
     @Transactional
     public void deleteCities() {
-        List<Integer> ids = (List<Integer>)entityManager
-                .createQuery("select id from City")
+        List<Long> ids = (List<Long>)entityManager
+                .createQuery("SELECT id FROM City", Long.class)
                 .getResultList();
-        for (Integer id : ids) {
+        for (Long id : ids) {
             deleteCity(id);
         }
     }
 
     @Transactional
-    public City findOrCreateCity(final int cityId, final String cityName) {
+    public City findOrCreateCity(final Long cityId, final String cityName) {
         City city = findCity(cityId);
         if (city == null) {
             city = new CityBuilder()

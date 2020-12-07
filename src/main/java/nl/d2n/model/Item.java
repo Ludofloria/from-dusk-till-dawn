@@ -50,7 +50,7 @@ public class Item {
     @Expose
     @Column(name = "d2n_item_id")
     @XmlAttribute(name = "id")
-    private int d2nItemId;
+    private Long d2nItemId;
 
     @Transient
     @Enumerated(EnumType.STRING)
@@ -74,7 +74,7 @@ public class Item {
     private boolean presetBp;
 
     public Item() {}
-    public Item(final Integer id, final String name, final ItemCategory category, final String image,
+    public Item(final Long id, final String name, final ItemCategory category, final String image,
                 final boolean broken, final boolean inSprite, final boolean poisoned, final boolean presetBp) {
         setD2nItemId(id);
         setName(name);
@@ -89,7 +89,7 @@ public class Item {
 
     public int getAmount() { return amount; }
     public ItemCategory getCategory() { return category; }
-    public int getD2nItemId() { return d2nItemId; }
+    public Long getD2nItemId() { return d2nItemId; }
     public String getImage() { return image; }
     public String getName() { return name; }
     public boolean isBroken() { return broken; }
@@ -101,7 +101,7 @@ public class Item {
     public void setAmount(int amount) { this.amount = amount; }
     public void setBroken(boolean broken) { this.broken = broken; }
     public void setCategory(ItemCategory category) { this.category = category; }
-    public void setD2nItemId(int d2nItemId) { this.d2nItemId = d2nItemId; }
+    public void setD2nItemId(Long d2nItemId) { this.d2nItemId = d2nItemId; }
     public void setImage(String image) { this.image = image; }
     public void setName(String name) { this.name = name; }
     public void setZone(Zone zone) { this.zone = zone; }
@@ -120,17 +120,17 @@ public class Item {
         return items;
     }
     
+    public static Pattern pattern = Pattern.compile("([0-9]+)([B]?)-([0-9]+)");
     public static Item translateItemKey(String itemKey) {
-        Pattern pattern = Pattern.compile("([0-9]+)([B]?)-([0-9]+)");
         Matcher matcher = pattern.matcher(itemKey);
         if (!matcher.matches()) {
             String msg = "Applying pattern "+pattern.toString()+" failed on: \""+itemKey+"\"";
             LOGGER.error(msg);
             throw new IllegalStateException(msg);
         }
-        Integer id = Integer.parseInt(matcher.group(1));
+        Long id = Long.valueOf(matcher.group(1));
         Boolean broken = "B".equals(matcher.group(2));
-        Integer amount = Integer.parseInt(matcher.group(3));
+        int amount = Integer.parseInt(matcher.group(3));
 
         Item item = new Item();
         item.setD2nItemId(id);

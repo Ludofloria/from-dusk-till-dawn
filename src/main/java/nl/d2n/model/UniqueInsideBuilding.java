@@ -16,7 +16,7 @@ public class UniqueInsideBuilding implements ImageBearer {
     @Expose
     @Id
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     @Expose
     @Column
@@ -27,7 +27,7 @@ public class UniqueInsideBuilding implements ImageBearer {
     private boolean temporary;
 
     @Column
-    private Integer parent;
+    private Long parent;
 
     @Expose
     @Column
@@ -62,7 +62,7 @@ public class UniqueInsideBuilding implements ImageBearer {
     private List<InsideBuildingResourceCost> requiredResources = new ArrayList<InsideBuildingResourceCost>();
 
     public UniqueInsideBuilding() {}
-    public UniqueInsideBuilding(Integer id, String name, boolean temporary, Integer parent, String image, String flavor, String url, boolean inSprite, boolean alwaysAvailable) {
+    public UniqueInsideBuilding(Long id, String name, boolean temporary, Long parent, String image, String flavor, String url, boolean inSprite, boolean alwaysAvailable) {
         this.id = id;
         this.name = name;
         this.temporary = temporary;
@@ -78,8 +78,8 @@ public class UniqueInsideBuilding implements ImageBearer {
 
     public String getName() { return this.name; }
     public boolean isTemporary() { return this.temporary; }
-    public Integer getId() { return this.id; }
-    public Integer getParent() { return this.parent; }
+    public Long getId() { return this.id; }
+    public Long getParent() { return this.parent; }
     public String getImage() { return this.image; }
     public String getFlavor() { return this.flavor; }
     public String getUrl() { return this.url; }
@@ -135,7 +135,7 @@ public class UniqueInsideBuilding implements ImageBearer {
             processBuildings(uniqueBuildings, childBuildings);
         }
     }
-    static public List<InsideBuilding> searchBuildingsWithParent(Collection<UniqueInsideBuilding> uniqueBuildings, Integer parent) {
+    static public List<InsideBuilding> searchBuildingsWithParent(Collection<UniqueInsideBuilding> uniqueBuildings, Long parent) {
         List<InsideBuilding> buildingsWithParent = new ArrayList<InsideBuilding>();
         for (UniqueInsideBuilding uniqueBuilding : uniqueBuildings) {
             if (parent == null) {

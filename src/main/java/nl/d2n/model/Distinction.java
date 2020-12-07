@@ -15,14 +15,14 @@ public class Distinction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
-    private Integer id;
+    private Long id;
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Column(name = "unique_distinction_id")
-    private Integer uniqueDistinctionId;
+    private Long uniqueDistinctionId;
 
     @Expose
     @XmlAttribute(name = "name")
@@ -53,8 +53,8 @@ public class Distinction {
     private boolean inSprite;
 
     public Distinction() {}
-    public Distinction(Integer id, String name, boolean rare, int amount, String image, boolean inSprite,
-                       User user, Integer uniqueDistinctionId) {
+    public Distinction(Long id, String name, boolean rare, int amount, String image, boolean inSprite,
+                       User user, Long uniqueDistinctionId) {
         this.id = id;
         this.name = name;
         this.rare = rare;
@@ -65,15 +65,15 @@ public class Distinction {
         this.uniqueDistinctionId = uniqueDistinctionId;
     }
 
-    public Integer getId() { return this.id; }
+    public Long getId() { return this.id; }
     public String getName() { return this.name; }
     public boolean isRare() { return this.rare; }
     public int getAmount() { return this.amount; }
     public String getImage() { return this.image; }
     public Title getTitle() { return this.title; }
-    public Integer getUniqueDistinctionId() { return this.uniqueDistinctionId; }
+    public Long getUniqueDistinctionId() { return this.uniqueDistinctionId; }
 
-    public void setUniqueDistinctionId(Integer uniqueDistinctionId) { this.uniqueDistinctionId = uniqueDistinctionId; }
+    public void setUniqueDistinctionId(Long uniqueDistinctionId) { this.uniqueDistinctionId = uniqueDistinctionId; }
     public void setUser(User user) { this.user = user; }
     public void setAmount(int amount) { this.amount = amount; }
     public void setName(String name) { this.name = name; }

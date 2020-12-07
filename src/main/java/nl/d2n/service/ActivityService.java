@@ -34,7 +34,7 @@ public class ActivityService {
     @Autowired
     private UserActionDao userActionDao;
 
-    public List<Citizen> rankCitizens(Integer cityId, List<Citizen> citizens, GameClock gameClock) {
+    public List<Citizen> rankCitizens(Long cityId, List<Citizen> citizens, GameClock gameClock) {
         UserStore<UserUpdateStatistics> statistics = gatherStatistics(cityId, gameClock);
         for (Citizen citizen : citizens) {
             UserUpdateStatistics userStats = statistics.getByTwinoidId(citizen.getId());
@@ -47,7 +47,7 @@ public class ActivityService {
         return citizens;
     }
 
-    protected UserStore<UserUpdateStatistics> gatherStatistics(Integer cityId, GameClock gameClock) {
+    protected UserStore<UserUpdateStatistics> gatherStatistics(Long cityId, GameClock gameClock) {
         UserStore<UserUpdateStatistics> statistics = new UserStore<UserUpdateStatistics>(userDao.findUsersInCity(cityId));
         updateStatistics(statistics, cityId);
 //        updateCount(statistics, cityId, gameClock.getHoursAgo(HOURS_VERY_RECENT), gameClock.getDateTime(), UPDATE_VERY_RECENT);
@@ -55,10 +55,10 @@ public class ActivityService {
         return statistics;
     }
 
-    protected void updateCount(UserStore<UserUpdateStatistics> statistics, Integer cityId, Date startDate, Date endDate, Boolean updateVeryRecent) {
+    protected void updateCount(UserStore<UserUpdateStatistics> statistics, Long cityId, Date startDate, Date endDate, Boolean updateVeryRecent) {
         List<UserUpdateCount> happenedSomeTimeAgo = userActionDao.findRecentChanges(cityId, startDate, endDate);
         for (UserUpdateCount userUpdateCount : happenedSomeTimeAgo) {
-            Integer userId = userUpdateCount.getId();
+            Long userId = userUpdateCount.getId();
             UserUpdateStatistics statisticsForUser = getStatisticsForUser(statistics, userId);
             if (updateVeryRecent) {
                 statisticsForUser.setHappenedVeryRecently(userUpdateCount);
@@ -67,15 +67,15 @@ public class ActivityService {
             }
         }
     }
-    protected void updateStatistics(UserStore<UserUpdateStatistics> statistics, Integer cityId) {
+    protected void updateStatistics(UserStore<UserUpdateStatistics> statistics, Long cityId) {
         List<LastUpdateByUser> lastUpdates = userActionDao.findLastUpdateTimes(cityId);
         for (LastUpdateByUser lastUpdate : lastUpdates) {
-            Integer userId = lastUpdate.getId();
+            Long userId = lastUpdate.getId();
             UserUpdateStatistics statisticsForUser = getStatisticsForUser(statistics, userId);
             statisticsForUser.setLastUpdate(lastUpdate);
         }
     }
-    protected UserUpdateStatistics getStatisticsForUser(UserStore<UserUpdateStatistics> statistics, Integer userId) {
+    protected UserUpdateStatistics getStatisticsForUser(UserStore<UserUpdateStatistics> statistics, Long userId) {
         UserUpdateStatistics statisticsForUser = statistics.getById(userId);
         if (statisticsForUser == null) {
             statisticsForUser = new UserUpdateStatistics();

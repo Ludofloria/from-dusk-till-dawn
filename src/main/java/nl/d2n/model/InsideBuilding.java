@@ -15,13 +15,13 @@ import java.util.TreeMap;
 @Table(name = "inside_buildings")
 @XmlRootElement(name = "building")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class InsideBuilding implements Comparable {
+public class InsideBuilding implements Comparable<Object> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
     @XmlTransient
-    private Integer id;
+    private Long id;
 
     @Expose
     @XmlAttribute
@@ -37,12 +37,12 @@ public class InsideBuilding implements Comparable {
     @SerializedName("id")
     @XmlAttribute(name = "id")
     @Column(name = "unique_inside_building_id")
-    private int buildingId;
+    private Long buildingId;
 
     @Expose
     @XmlAttribute
     @Transient
-    private int parent;
+    private Long parent;
 
     @Expose
     @XmlAttribute(name = "img")
@@ -102,7 +102,7 @@ public class InsideBuilding implements Comparable {
     private List<InsideBuildingResourceCost> requiredResources = new ArrayList<InsideBuildingResourceCost>();
 
     public InsideBuilding() {}
-    public InsideBuilding(Integer buildingId, String name, boolean temporary, Integer parent, String image,
+    public InsideBuilding(Long buildingId, String name, boolean temporary, Long parent, String image,
                           String flavor, String url, boolean inSprite, Integer ap, Integer defence,
                           List<InsideBuildingResourceCost> requiredResources) {
         this.buildingId = buildingId;
@@ -120,8 +120,8 @@ public class InsideBuilding implements Comparable {
 
     public String getName() { return this.name; }
     public boolean isTemporary() { return this.temporary; }
-    public int getBuildingId() { return this.buildingId; }
-    public int getParent() { return this.parent; }
+    public Long getBuildingId() { return this.buildingId; }
+    public Long getParent() { return this.parent; }
     public String getImage() { return this.image; }
     public String getFlavor() { return this.flavor; }
     public String getUrl() { return this.url; }
@@ -136,14 +136,14 @@ public class InsideBuilding implements Comparable {
     public void setChildBuildings(List<InsideBuilding> childBuildings) { this.childBuildings = childBuildings; }
     public void setStatus(InsideBuildingStatus status) { this.status = status; }
     public void setCity(City city) { this.city = city; }
-    public void setBuildingId(int buildingId) { this.buildingId = buildingId; }
+    public void setBuildingId(Long buildingId) { this.buildingId = buildingId; }
     public void setAlwaysAvailable(boolean alwaysAvailable) { this.alwaysAvailable = alwaysAvailable; }
 
     public static List<InsideBuilding> setConstructedBuildingStatus(List<InsideBuilding> nodeBuildings,
                                                                     List<InsideBuilding> constructedBuildings,
                                                                     InsideBuildingStatus status,
                                                                     boolean alwaysAvailable) {
-        Map<Integer, InsideBuilding> constructedBuildingsMap = new TreeMap<Integer, InsideBuilding>();
+        TreeMap<Long, InsideBuilding> constructedBuildingsMap = new TreeMap<Long, InsideBuilding>();
         for (InsideBuilding constructedBuilding : constructedBuildings) {
             constructedBuildingsMap.put(constructedBuilding.getBuildingId(), constructedBuilding);
         }
@@ -151,7 +151,7 @@ public class InsideBuilding implements Comparable {
         return nodeBuildings;
     }
     public static void setConstructedBuildingStatus(List<InsideBuilding> nodeBuildings,
-                                                    Map<Integer, InsideBuilding> constructedBuildingsMap,
+                                                    Map<Long, InsideBuilding> constructedBuildingsMap,
                                                     InsideBuildingStatus status,
                                                     boolean alwaysAvailable) {
         for (InsideBuilding building : nodeBuildings) {
@@ -165,13 +165,14 @@ public class InsideBuilding implements Comparable {
     }
 
     public int hashCode() {
-        return id == null ? buildingId : id;
+        return (int) (id == null ? buildingId : id).hashCode();
     }
-    public int compareTo(Object o) {
+
+    public int compareTo(final Object o) {
         if (!(o instanceof InsideBuilding)) {
             return -1;
         }
         InsideBuilding otherBuilding = (InsideBuilding)o;
-        return ((Integer) getBuildingId()).compareTo(otherBuilding.getBuildingId());
+        return ((Long) getBuildingId()).compareTo(otherBuilding.getBuildingId());
     }
 }

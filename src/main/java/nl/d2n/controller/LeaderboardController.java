@@ -26,7 +26,7 @@ public class LeaderboardController extends AbstractController {
 
     @RequestMapping(method = RequestMethod.GET, value= "top_100")
     public void findTopUsersWithDistinction(HttpServletRequest request, HttpServletResponse response,
-                                            @RequestParam(value = "distinction_id", required = true) Integer uniqueDistinctionId
+                                            @RequestParam(value = "distinction_id", required = true) Long uniqueDistinctionId
                                             ) throws IOException {
         writeJsonStringToResponse(GsonUtil.objectToJson(
                 leaderboardService.findTopUsersWithDistinction(uniqueDistinctionId)), response);

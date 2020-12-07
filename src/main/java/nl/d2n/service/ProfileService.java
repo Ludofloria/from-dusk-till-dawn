@@ -29,10 +29,10 @@ public class ProfileService {
     @Autowired
     private UniqueTitleManager uniqueTitleManager;
 
-    public Map<Integer, List<Distinction>> getDistinctions(Integer cityId, List<Citizen> citizens) {
-        Map<Integer, List<Distinction>> distinctionsGroupedByCitizen = new TreeMap<Integer, List<Distinction>>();
-        Map<Integer, UniqueDistinction> uniqueDistinctions = uniqueDistinctionManager.getMapWithIntegerKeys();
-        Map<Integer, UserWithProfile> profiles = distinctionDao.findUsersWithDistinctions(cityId, userDao.findUserIds(citizens));
+    public Map<Long, List<Distinction>> getDistinctions(Long cityId, List<Citizen> citizens) {
+        TreeMap<Long, List<Distinction>> distinctionsGroupedByCitizen = new TreeMap<Long, List<Distinction>>();
+        Map<Long, UniqueDistinction> uniqueDistinctions = uniqueDistinctionManager.getMapWithIntegerKeys();
+        Map<Long, UserWithProfile> profiles = distinctionDao.findUsersWithDistinctions(cityId, userDao.findUserIds(citizens));
         for (Citizen citizen : citizens) {
             UserWithProfile profile = profiles.get(citizen.getId());
             if (profile == null) {

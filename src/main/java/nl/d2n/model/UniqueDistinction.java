@@ -13,7 +13,7 @@ public class UniqueDistinction implements ImageBearer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
-    private Integer id;
+    private Long id;
 
     @Expose
     @Column(name = "name")
@@ -39,13 +39,13 @@ public class UniqueDistinction implements ImageBearer {
         setInSprite(inSprite);
     }
 
-    public Integer getId() { return this.id; }
+    public Long getId() { return this.id; }
     public String getName() { return this.name; }
     public boolean isRare() { return this.rare; }
     public String getImage() { return this.image; }
     public boolean isInSprite() { return this.inSprite; }
 
-    public void setId(Integer id) { this.id = id; }
+    public void setId(Long id) { this.id = id; }
     public void setName(String name) { this.name = name; }
     public void setRare(boolean rare) { this.rare = rare; }
     public void setImage(String image) { this.image = image; }

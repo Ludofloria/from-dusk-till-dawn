@@ -24,7 +24,7 @@ public abstract class ZoneActionManualUpdate extends AbstractZoneAction {
     public Map<String, Object> execute(final UserKey userKey, final Integer x, final Integer y, final Integer day) throws ApplicationException {
 
         // Do this one before the check, because fetching the city might lead to a XML fetch and a legitimate user
-        Integer cityId = getCityId(userKey);
+        Long cityId = getCityId(userKey);
 
         performSecurityCheck(userKey);
 
@@ -36,8 +36,8 @@ public abstract class ZoneActionManualUpdate extends AbstractZoneAction {
         return zone.getSingleZoneUpdate(null);
     }
 
-    protected Integer getCityId(UserKey userKey) throws ApplicationException {
-        Integer cityId = userDao.getCityId(userKey);
+    protected Long getCityId(UserKey userKey) throws ApplicationException {
+        Long cityId = userDao.getCityId(userKey);
         if (cityId == null) {
             readInfoAndPrepareMatrix(userKey, DISALLOW_CACHE_READ, DO_NOT_PERFORM_STATUS_CHECKS);
             cityId = userDao.getCityId(userKey);

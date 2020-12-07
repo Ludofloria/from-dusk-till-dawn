@@ -23,7 +23,7 @@ public abstract class AbstractZoneAction extends AbstractAction {
         return zone;
     }
 
-    protected Zone findOrCreate(final int cityId, final int x, final int y) throws ApplicationException {
+    protected Zone findOrCreate(final Long cityId, final int x, final int y) throws ApplicationException {
         City city = cityDao.findCity(cityId);
         if (city == null) {
             throw new ApplicationException(D2NErrorCode.CITY_DOES_NOT_EXIST);
@@ -74,7 +74,7 @@ public abstract class AbstractZoneAction extends AbstractAction {
         storeBasicInformation(zone);
     }
 
-    protected Zone updateZone(Integer cityId, Integer x, Integer y) throws ApplicationException {
+    protected Zone updateZone(Long cityId, Integer x, Integer y) throws ApplicationException {
         final Zone zone = findOrCreate(cityId, x, y);
         deleteAllItemsInZone(zone);
         updateBasicInformation(zone);

@@ -45,7 +45,7 @@ public class Info {
     private MapMatrix matrix;
 
     @XmlTransient
-    private Map<Integer, UniqueItem> itemLookup;
+    private Map<Long, UniqueItem> itemLookup;
 
     public GameMap getMap() { return this.map; }
     public City getCity() { return this.city; }
@@ -57,7 +57,7 @@ public class Info {
     public List<TownUpgrade> getUpgrades() { return this.upgrades; }
     public MapMatrix getMatrix() { return this.matrix; }
     public List<Item> getUniqueItems() { return this.uniqueItems; }
-    public Map<Integer, UniqueItem> getItemLookup() { return this.itemLookup; }
+    public Map<Long, UniqueItem> getItemLookup() { return this.itemLookup; }
     public String getItemLookupAsJson() {
         return GsonUtil.objectToJson(getItemLookup());
     }
@@ -131,7 +131,7 @@ public class Info {
     }
 
     public void setUniqueItems(List<Item> uniqueItems) { this.uniqueItems = uniqueItems; }
-    public void setItemLookup(Map<Integer, UniqueItem> itemLookup) { this.itemLookup = itemLookup; }
+    public void setItemLookup(Map<Long, UniqueItem> itemLookup) { this.itemLookup = itemLookup; }
     public void setGameHeader(final GameHeader gameHeader) { this.gameHeader = gameHeader; }
     public void setMatrix(MapMatrix matrix) { this.matrix = matrix; }
     public void setCity(City city) { this.city = city; }

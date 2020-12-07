@@ -26,7 +26,7 @@ public class UniqueItemDao {
     @SuppressWarnings({"unchecked"})
     public List<UniqueItem> findUniqueItems() {
         return (List<UniqueItem>)entityManager
-                .createQuery("from UniqueItem")
+                .createQuery("from UniqueItem", UniqueItem.class)
                 .getResultList();
     }
 

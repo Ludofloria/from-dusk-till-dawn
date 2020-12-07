@@ -21,7 +21,7 @@ public class LeaderboardService {
         return this.uniqueDistinctionManager.findUniqueObjectsOrdered();
     }
 
-    public List<UserWithDistinction> findTopUsersWithDistinction(Integer uniqueDistinctionId) {
+    public List<UserWithDistinction> findTopUsersWithDistinction(Long uniqueDistinctionId) {
         return this.distinctionDao.findTopUsersWithDistinction(uniqueDistinctionId, 100);
     }
 

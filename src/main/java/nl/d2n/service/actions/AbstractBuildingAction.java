@@ -25,7 +25,8 @@ public abstract class AbstractBuildingAction extends AbstractAction {
     @Autowired
     protected InsideBuildingDao insideBuildingDao;
     
-    public void execute(UserKey userKey, Integer cityId, Integer buildingId, Integer day) throws ApplicationException {
+    public void execute(UserKey userKey, Long cityId, Long buildingId, Integer day)
+    throws ApplicationException {
 
         // 1. Perform the security check
         performSecurityCheck(userKey);
@@ -51,9 +52,10 @@ public abstract class AbstractBuildingAction extends AbstractAction {
         logAction(city, userKey, day, getGameClock(userKey));
     }
 
-    protected InsideBuilding getBuilding(Integer buildingId, List<InsideBuilding> insideBuildings) {
+    protected InsideBuilding getBuilding(Long buildingId, List<InsideBuilding> insideBuildings) {
+        if (buildingId != null)
         for (InsideBuilding building : insideBuildings) {
-            if (buildingId == building.getBuildingId()) {
+            if (buildingId.equals(building.getBuildingId())) {
                 return building;
             }
         }

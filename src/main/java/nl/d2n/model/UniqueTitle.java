@@ -12,14 +12,14 @@ public class UniqueTitle {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
-    private Integer id;
+    private Long id;
 
     @Expose
     @Column(name = "name")
     private String name;
 
     @Column(name = "unique_distinction_id")
-    private Integer uniqueDistinctionId;
+    private Long uniqueDistinctionId;
 
     @Expose
     @Column(name = "treshold")
@@ -33,8 +33,8 @@ public class UniqueTitle {
     public void setName(String name) { this.name = name; }
     public int getTreshold() { return treshold; }
     public void setTreshold(int treshold) { this.treshold = treshold; }
-    public Integer getUniqueDistinctionId() { return uniqueDistinctionId; }
-    public void setUniqueDistinctionId(Integer uniqueDistinctionId) { this.uniqueDistinctionId = uniqueDistinctionId; }
+    public Long getUniqueDistinctionId() { return uniqueDistinctionId; }
+    public void setUniqueDistinctionId(Long uniqueDistinctionId) { this.uniqueDistinctionId = uniqueDistinctionId; }
     public double getTwinoidPoints() { return twinoidPoints; }
     public void setTwinoidPoints(double twinoidPoints) { this.twinoidPoints = twinoidPoints; }
 

@@ -32,7 +32,7 @@ public class WikiConstructionDataParser {
     @Autowired
     private D2NXmlFile fileAccessor;
     
-    public WikiConstructionData parse(WikiConstructionLoadType loadType, Integer id, String url) throws WikiConstructionParserException {
+    public WikiConstructionData parse(WikiConstructionLoadType loadType, Long id, String url) throws WikiConstructionParserException {
         try {
             final String htmlBody;
             if (loadType == WikiConstructionLoadType.FROM_FILE) {
@@ -55,14 +55,14 @@ public class WikiConstructionDataParser {
         }
     }
 
-    public String readFile(String url, Integer id) throws WikiConstructionParserException {
+    public String readFile(String url, Long id) throws WikiConstructionParserException {
         try {
             return fileAccessor.readFile("buildings-from-wiki", id);
         } catch (IOException err) {
             throw new WikiConstructionParserException(url, WikiConstructionParserErrorType.COULD_NOT_READ_FILE, err.getMessage());
         }
     }
-    public void writeFile(String htmlBody, Integer id) throws IOException {
+    public void writeFile(String htmlBody, Long id) throws IOException {
         fileAccessor.writeFile(htmlBody, "buildings-from-wiki", id);
     }
 

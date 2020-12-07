@@ -6,7 +6,7 @@ public class CityBuilder {
 
     private City city = new City();
 
-    public CityBuilder setId(Integer id) {
+    public CityBuilder setId(Long id) {
         city.setId(id);
         return this;
     }

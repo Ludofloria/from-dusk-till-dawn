@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UniqueInsideBuildingManager extends UniqueManagerWithImages<Integer, UniqueInsideBuilding, InsideBuilding> {
+public class UniqueInsideBuildingManager extends UniqueManagerWithImages<Long, UniqueInsideBuilding, InsideBuilding> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UniqueInsideBuildingManager.class);
 
@@ -86,12 +86,12 @@ public class UniqueInsideBuildingManager extends UniqueManagerWithImages<Integer
     }
 
     @Override
-    protected Integer getKeyFromUniqueObject(UniqueInsideBuilding value) {
+    protected Long getKeyFromUniqueObject(UniqueInsideBuilding value) {
         return value.getId();
     }
 
     @Override
-    protected Integer getKeyFromNonUniqueObject(InsideBuilding value) {
+    protected Long getKeyFromNonUniqueObject(InsideBuilding value) {
         return value.getBuildingId();
     }
 

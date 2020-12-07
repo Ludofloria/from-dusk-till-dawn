@@ -13,7 +13,7 @@ public class Cadaver {
     private int deathType;
 
     @XmlAttribute
-    private int id;
+    private long id;
 
     @XmlAttribute
     private int day;
@@ -23,7 +23,7 @@ public class Cadaver {
 
     public String getName() { return this.name; }
     public int getDeathType() { return this.deathType; }
-    public int getId() { return this.id; }
+    public long getId() { return this.id; }
     public int getDay() { return this.day; }
     public String getMessage() { return this.message; }
 }

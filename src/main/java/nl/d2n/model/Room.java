@@ -17,7 +17,7 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
-    private Integer id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "zone_id", nullable = false, columnDefinition = "bigint")
@@ -97,7 +97,7 @@ public class Room {
         init();
     }
 
-    public Integer getId() { return id; }
+    public Long getId() { return id; }
     public int getX() { return x; }
     public int getY() { return y; }
     public Door getDoor() { return door; }

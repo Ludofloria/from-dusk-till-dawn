@@ -26,39 +26,39 @@ public class UserDao {
         entityManager.merge(user);
     }
 
-    public Integer getCityId(final UserKey key) {
-        List results = entityManager
-                .createQuery("select u.city.id from User u where u.key = :key")
+    public Long getCityId(final UserKey key) {
+        List<Long> results = entityManager
+                .createQuery("select u.city.id from User u where u.key = :key", Long.class)
                 .setParameter("key", key)
                 .getResultList();
-        return (results.size() == 0 ? null : (Integer)results.get(0));
+        return (results.size() == 0 ? null : (Long) results.get(0));
     }
 
-    public User findByGameId(final Integer gameId) {
-        List results = entityManager
-                .createQuery("from User u where u.gameId = :game_id")
+    public User findByGameId(final Long gameId) {
+        List<User> results = entityManager
+                .createQuery("from User u where u.gameId = :game_id", User.class)
                 .setParameter("game_id", gameId)
                 .getResultList();
         return (results.size() == 0 ? null : (User)results.get(0));
     }
 
     public User find(final UserKey key) {
-        List results = entityManager
-                .createQuery("from User u where u.key = :key")
+        List<User> results = entityManager
+                .createQuery("from User u where u.key = :key", User.class)
                 .setParameter("key", key)
                 .getResultList();
         return (results.size() == 0 ? null : (User)results.get(0));
     }
 
     @SuppressWarnings({"unchecked"})
-    public List<User> findUsersInCity(final Integer cityId) {
+    public List<User> findUsersInCity(final Long cityId) {
         return (List<User>)entityManager
                 .createQuery("from User u where u.city.id = :city_id and u.name != null")
                 .setParameter("city_id", cityId)
                 .getResultList();
     }
 
-    public boolean isUserInCity(final Integer userId, final Integer cityId) {
+    public boolean isUserInCity(final Long userId, final Long cityId) {
         return (Long)entityManager
                 .createQuery("select count(*) from User u where u.id = :user_id and u.city.id = :city_id")
                 .setParameter("user_id", userId)
@@ -73,17 +73,18 @@ public class UserDao {
                 .executeUpdate();
     }
 
-    public List<User> findDeadUsersInTown(final Integer cityId, final List<Citizen> citizens) {
+    public List<User> findDeadUsersInTown(final Long cityId, final List<Citizen> citizens) {
         return findUsersInTown(cityId, citizens, "from User u where u.city.id = :city_id and u.gameId not in (:ids)");
     }
 
-    public List<User> findUsersNotYetRegisteredToSameTown(final Integer cityId, final List<Citizen> citizens) {
+    public List<User> findUsersNotYetRegisteredToSameTown(final Long cityId, final List<Citizen> citizens) {
         return findUsersInTown(cityId, citizens, "from User u where (u.city.id != :city_id or u.city.id is null) and u.gameId in (:ids)");
     }
 
     @SuppressWarnings({"unchecked"})
-    protected List<User> findUsersInTown(final Integer cityId, final List<Citizen> citizens, final String query) {
-        if (citizens.size() == 0) {
+    protected List<User> findUsersInTown(final Long cityId, final List<Citizen> citizens, final String query) {
+        if (citizens.size() == 0)
+        {
             return new ArrayList<User>();
         }
         return (List<User>)entityManager
@@ -94,15 +95,15 @@ public class UserDao {
     }
     
     @SuppressWarnings({"unchecked"})
-    public List<Integer> findUserIds(List<Citizen> citizens) {
-        return (List<Integer>)entityManager
+    public List<Long> findUserIds(List<Citizen> citizens) {
+        return (List<Long>)entityManager
                 .createQuery("select u.id from User u where u.gameId in (:ids)")
                 .setParameter("ids", convertCitizensToIds(citizens))
                 .getResultList();
     }
 
-    protected List<Integer> convertCitizensToIds(List<Citizen> citizens) {
-        List<Integer> ids = new ArrayList<Integer>();
+    protected List<Long> convertCitizensToIds(List<Citizen> citizens) {
+        List<Long> ids = new ArrayList<Long>();
         for (Citizen citizen : citizens) {
             ids.add(citizen.getId());
         }

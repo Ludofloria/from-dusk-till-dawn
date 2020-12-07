@@ -36,7 +36,7 @@ public class UserService {
         userDao.save(user);
     }
     
-    public void updateUser(final City city, final UserKey userKey, final Integer gameId,
+    public void updateUser(final City city, final UserKey userKey, final Long gameId,
                            final String name, final boolean secure,
                            final boolean shunned, List<Citizen> citizens) throws ApplicationException {
 
@@ -99,7 +99,7 @@ public class UserService {
         return false;
     }
     
-    protected boolean updateGameId(User user, Integer fromXml, Integer fromDatabase) {
+    protected boolean updateGameId(User user, Long fromXml, Long fromDatabase) {
         if (fromXml != null && (fromDatabase == null || !fromXml.equals(fromDatabase))) {
             user.setGameId(fromXml);
             return true;

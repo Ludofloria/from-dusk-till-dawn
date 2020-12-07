@@ -19,8 +19,8 @@ public class UserKey {
     public void setKey(String key) { this.key = key; }
     public String getKey() { return this.key; }
     
+    public static final Pattern pattern = Pattern.compile("[0-9a-f]+");
     public void check() throws ApplicationException {
-        Pattern pattern = Pattern.compile("[0-9a-f]+");
         Matcher matcher = pattern.matcher(getKey());
         if (!matcher.matches()) {
             throw new ApplicationException(D2NErrorCode.TAMPERED_KEY);

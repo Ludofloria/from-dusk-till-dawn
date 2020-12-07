@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
-public class UniqueOutsideBuildingManager extends UniqueManager<Integer, UniqueOutsideBuilding, OutsideBuilding> {
+public class UniqueOutsideBuildingManager extends UniqueManager<Long, UniqueOutsideBuilding, OutsideBuilding> {
 
     @Autowired
     private UniqueOutsideBuildingDao uniqueOutsideBuildingDao;
@@ -22,12 +22,12 @@ public class UniqueOutsideBuildingManager extends UniqueManager<Integer, UniqueO
     }
 
     @Override
-    protected Integer getKeyFromUniqueObject(UniqueOutsideBuilding value) {
+    protected Long getKeyFromUniqueObject(UniqueOutsideBuilding value) {
         return value.getId();
     }
 
     @Override
-    protected Integer getKeyFromNonUniqueObject(OutsideBuilding value) {
+    protected Long getKeyFromNonUniqueObject(OutsideBuilding value) {
         return value.getType();
     }
 

@@ -171,11 +171,14 @@ public class MapMatrix {
         return GsonUtil.objectToJson(toJsonMap());
     }
 
+    /**
+     * @return [x,y] => zone
+     */
     public Map<Integer, Map<Integer, Zone>> toJsonMap() {
-        Map<Integer, Map<Integer, Zone>> map = new TreeMap<Integer, Map<Integer, Zone>>();
+        TreeMap<Integer, Map<Integer, Zone>> map = new TreeMap<Integer, Map<Integer, Zone>>();
         for (int xPos = 0; xPos < this.width; xPos++) {
             int realXPos = getRealXPos(xPos);
-            Map<Integer, Zone> column = new TreeMap<Integer, Zone>();
+            TreeMap<Integer, Zone> column = new TreeMap<Integer, Zone>();
             map.put(realXPos, column);
 
             for (int yPos = 0; yPos < this.height; yPos++) {

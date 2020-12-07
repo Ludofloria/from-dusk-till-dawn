@@ -18,7 +18,7 @@ public class TownUpgrade {
 
     @Expose
     @XmlAttribute
-    private int buildingId;
+    private Long buildingId;
 
     @Expose
     @XmlValue
@@ -26,6 +26,6 @@ public class TownUpgrade {
 
     public String getName() { return this.name; }
     public int getLevel() { return this.level; }
-    public int getBuildingId() { return this.buildingId; }
+    public Long getBuildingId() { return this.buildingId; }
     public String getDescription() { return this.description; }
 }

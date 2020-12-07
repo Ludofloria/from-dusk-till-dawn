@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 @Service
-public class UniqueItemManager extends UniqueManagerWithImages<Integer,UniqueItem, Item> {
+public class UniqueItemManager extends UniqueManagerWithImages<Long, UniqueItem, Item> {
 
     @Autowired
     private UniqueItemDao uniqueItemDao;
@@ -26,11 +26,11 @@ public class UniqueItemManager extends UniqueManagerWithImages<Integer,UniqueIte
         uniqueItemDao.save(uniqueItem);
     }
 
-    protected Integer getKeyFromUniqueObject(UniqueItem value) {
+    protected Long getKeyFromUniqueObject(UniqueItem value) {
         return value.getId();
     }
 
-    protected Integer getKeyFromNonUniqueObject(Item value) {
+    protected Long getKeyFromNonUniqueObject(Item value) {
         return value.getD2nItemId();
     }
 
@@ -65,8 +65,8 @@ public class UniqueItemManager extends UniqueManagerWithImages<Integer,UniqueIte
         return items;
     }
     
-    public Map<String, Integer> getItemIdsByImage() {
-        Map<String, Integer> itemIdsByImage = new TreeMap<String, Integer>();
+    public Map<String, Long> getItemIdsByImage() {
+        TreeMap<String, Long> itemIdsByImage = new TreeMap<String, Long>();
         for (UniqueItem uniqueItem : uniqueObjects.values()) {
             itemIdsByImage.put(uniqueItem.getImage(), uniqueItem.getId());
         }
